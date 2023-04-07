@@ -11,6 +11,13 @@ components:
       cpuLimit: 2000m
       args: ['entrypoint']
       # args: ['tail', '-f', '/dev/null']
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv      
+      mountSources: true
+  - name: venv
+    volume:
+      size: 1G          
 commands:
   - id: entrypoint
     exec:
