@@ -1,4 +1,4 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.1.0
 metadata:
   name: ansible-demo
 components:
@@ -8,12 +8,8 @@ components:
       volumeMounts:
         - name: venv
           path: /home/user/.venv
+      memoryLimit: 2G
       mountSources: true
   - name: venv
     volume:
-      size: 1G          
-      memoryRequest: 256M
-      memoryLimit: 2G
-      cpuRequest: 250m
-      cpuLimit: 500m
-      args: ['tail', '-f', '/dev/null']
+      size: 1G
