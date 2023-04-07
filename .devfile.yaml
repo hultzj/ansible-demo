@@ -5,8 +5,15 @@ components:
   - name: tooling-container
     container:
       image: quay.io/ansible/creator-ee:latest
-      memoryRequest: 256M
-      memoryLimit: 6Gi
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+      mountSources: true
+  - name: venv
+    volume:
+      size: 1G          
+      memoryRequest: 252M
+      memoryLimit: 1Gi
       cpuRequest: 250m
-      cpuLimit: 2000m
+      cpuLimit: 500m
       args: ['tail', '-f', '/dev/null']
