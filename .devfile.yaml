@@ -12,8 +12,8 @@ components:
   - name: venv
     volume:
       size: 1G          
-      memoryRequest: 252M
-      memoryLimit: 1Gi
+      memoryRequest: 256M
+      memoryLimit: 2G
       cpuRequest: 250m
       cpuLimit: 500m
       args: ['tail', '-f', '/dev/null']
