@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tooling-container
     container:
-      image: quay.io/mloriedo/ansible-creator-ee:latest
+      image: quay.io/repository/ansible/creator-ee
       memoryRequest: 256M
       memoryLimit: 2Gi
       cpuRequest: 250m
