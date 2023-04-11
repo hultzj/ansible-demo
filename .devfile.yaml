@@ -1,3 +1,39 @@
+# schemaVersion: 2.2.0
+# metadata:
+#   name: ansible-demo
+# components:
+#   - name: tooling-container
+#     container:
+#       image: quay.io/ansible-dev-sp/ansible:latest
+#       memoryRequest: 256M
+#       memoryLimit: 2Gi
+#       cpuRequest: 250m
+#       cpuLimit: 2000m
+#       args: ['entrypoint']
+#       # args: ['tail', '-f', '/dev/null']
+#       volumeMounts:
+#         - name: venv
+#           path: /home/user/.venv      
+#       mountSources: true
+#   - name: venv
+#     volume:
+#       size: 1G          
+# commands:
+#   - id: entrypoint
+#     exec:
+#       label: "WORKAROUND to run the entrypoint in Dev Spaces < v3.6"
+#       component: tooling-container
+#       commandLine: entrypoint
+#   # - id: run
+#   #   exec:
+#   #     label: "Run the application"
+#   #     component: python
+#   #     workingDir: ${PROJECTS_ROOT}
+#   #     commandLine: python -m venv .venv && . .venv/bin/activate
+# events:
+#   postStart:
+#     - entrypoint
+
 schemaVersion: 2.2.0
 metadata:
   name: ansible-demo
@@ -6,30 +42,7 @@ components:
     container:
       image: quay.io/ansible-dev-sp/ansible:latest
       memoryRequest: 256M
-      memoryLimit: 2Gi
+      memoryLimit: 6Gi
       cpuRequest: 250m
       cpuLimit: 2000m
-      args: ['entrypoint']
-      # args: ['tail', '-f', '/dev/null']
-      volumeMounts:
-        - name: venv
-          path: /home/user/.venv      
-      mountSources: true
-  - name: venv
-    volume:
-      size: 1G          
-commands:
-  - id: entrypoint
-    exec:
-      label: "WORKAROUND to run the entrypoint in Dev Spaces < v3.6"
-      component: tooling-container
-      commandLine: entrypoint
-  # - id: run
-  #   exec:
-  #     label: "Run the application"
-  #     component: python
-  #     workingDir: ${PROJECTS_ROOT}
-  #     commandLine: python -m venv .venv && . .venv/bin/activate
-events:
-  postStart:
-    - entrypoint
+      args: ['tail', '-f', '/dev/null']
